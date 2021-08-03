@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "sharpness-particles",
+  "version": "${version}",
+  "name": "Sharpness Particles",
+  "description": "Always hit with enchanted particles!",
+  "authors": [
+    "Noryea"
+  ],
+  "contact": {
+    "homepage": "https://space.bilibili.com/12873326",
+    "sources": "https://github.com/Noryea/SharpnessParticles"
+  },
+
+  "license": "CC0-1.0",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "me.noryea.sharpnessparticles.Main"
+    ]
+  },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
