@@ -17,8 +17,8 @@ public class Main implements ClientModInitializer {
 	public void onInitializeClient() {
 		AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) ->
 		{
-			//判断是否有锋利附魔
 			boolean hasSharpness = false;
+			/* 
 			if (player.getMainHandStack().hasEnchantments()) {
 				NbtList enchantments = player.getMainHandStack().getEnchantments();
 				for (int i = 0; i < enchantments.size(); i++) {
@@ -28,8 +28,8 @@ public class Main implements ClientModInitializer {
 						break;
 					}
 				}
-			}
-
+			} 
+			*/
 			if (!hasSharpness && !player.isSpectator()) {
 				//产生粒子
 				EntityAnimationS2CPacket packet = new EntityAnimationS2CPacket(entity, EntityAnimationS2CPacket.ENCHANTED_HIT);
