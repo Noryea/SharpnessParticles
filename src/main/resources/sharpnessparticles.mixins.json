@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "me.noryea.sharpnessparticles.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "EmitterParticleMixin",
+    "ClientPlayNetworkHandlerMixin",
+    "ClientPlayerEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

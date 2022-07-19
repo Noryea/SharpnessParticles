@@ -1,0 +1,8 @@
+{
+  "sharpness-particles.midnightconfig.title": "Sharpness Particles",
+  "sharpness-particles.midnightconfig.showSharpnessParticles": "Show Sharpness Particles",
+  "sharpness-particles.midnightconfig.multiplier": "Multiplier",
+  "sharpness-particles.midnightconfig.enum.SharpnessParticlesMode.NEVER": "§cNever",
+  "sharpness-particles.midnightconfig.enum.SharpnessParticlesMode.VANILLA": "Vanilla",
+  "sharpness-particles.midnightconfig.enum.SharpnessParticlesMode.ALWAYS": "Always"
+}
