@@ -1,20 +1,14 @@
 plugins {
-	id 'fabric-loom' version '0.11-SNAPSHOT'
-	id 'maven-publish'
+	id 'fabric-loom' version '1.0-SNAPSHOT'
+	id 'io.github.juuxel.loom-quiltflower' version '1.7.2'
 }
 
-sourceCompatibility = JavaVersion.VERSION_16
-targetCompatibility = JavaVersion.VERSION_16
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
 version = getVersion()
 group = project.maven_group
-
-repositories {
-	maven {
-		url = "https://api.modrinth.com/maven"
-	}
-}
 
 configurations {
 	modIncludeImplementation
@@ -23,17 +17,31 @@ configurations {
 	modImplementation.extendsFrom modIncludeImplementation
 }
 
+repositories {
+	maven {
+		url = 'https://maven.terraformersmc.com/releases'
+		content {
+			includeGroup 'com.terraformersmc'
+		}
+	}
+	maven {
+		url = "https://api.modrinth.com/maven"
+	}
+}
+
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-	// Fabric API
-	//modImplementation
 	modIncludeImplementation(fabricApi.module("fabric-api-base", project.fabric_version))
 	modIncludeImplementation(fabricApi.module("fabric-events-interaction-v0", project.fabric_version))
 	modIncludeImplementation("maven.modrinth:midnightlib:${project.midnightlib_version}")
+}
+
+loom {
+
 }
 
 processResources {
@@ -51,7 +59,7 @@ tasks.withType(JavaCompile).configureEach {
 	// If Javadoc is generated, this must be specified in that task too.
 	it.options.encoding = "UTF-8"
 
-	it.options.release = 16
+	it.options.release = 8
 }
 
 java {
@@ -67,31 +75,15 @@ jar {
 	}
 }
 
-// configure the maven publication
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			// add all the jars that should be included when publishing to maven
-			artifact(remapJar) {
-				builtBy remapJar
-			}
-			artifact(sourcesJar) {
-				builtBy remapSourcesJar
-			}
-		}
-	}
-
-	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-	repositories {
-		// Add repositories to publish to here.
-		// Notice: This block does NOT have the same function as the block in the top level.
-		// The repositories here will be used for publishing your artifact, not for
-		// retrieving dependencies.
-	}
-}
+    repositories {
+        // Add repositories to publish to here.
+        // Notice: This block does NOT have the same function as the block in the top level.
+        // The repositories here will be used for publishing your artifact, not for
+        // retrieving dependencies.
+    }
 
 String getVersion() {
-	String version = "${project.mod_version}-mc1.17(1.18)"
+	String version = "${project.mod_version}+mc${project.minecraft_version}"
 
 	return version
 }
